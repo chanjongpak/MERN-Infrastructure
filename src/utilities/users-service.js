@@ -5,7 +5,6 @@ export async function signUp(userData) {
   // which will ultimately return a JSON Web Token (JWT)
   const token = await usersAPI.signUp(userData);
   localStorage.setItem("token", token);
-  console.log(token);
   return getUser();
   // Baby step by returning whatever is sent back by the server
 }
@@ -39,4 +38,8 @@ export async function login(userData) {
   const token = await usersAPI.login(userData);
   localStorage.setItem("token", token);
   return getUser();
+}
+
+export function checkToken() {
+  return usersAPI.checkToken().then((dateStr) => new Date(dateStr));
 }
